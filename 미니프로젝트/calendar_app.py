@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from datetime import date
 import holidays
-##Flask install, holiday  instal
 app = Flask(__name__)   #웹 서버 생성
 
 # 연도, 월을 받아 일수 반환
