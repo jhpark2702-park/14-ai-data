@@ -8,7 +8,7 @@
 
 ## 파일 설명
 
-- `calender_app.py`  
+- `calendar_app.py`  
   Flask 서버 실행 파일이며, 달력 데이터를 생성합니다.
 
 - `templates/calendar.html`  
@@ -33,7 +33,7 @@ pip install holidays
 터미널에서 프로젝트 폴더로 이동한 뒤 아래 명령어를 실행합니다.
 
 ```bash
-python calender_app.py
+python calendar_app.py
 ```
 
 실행 후 터미널에 아래와 비슷한 주소가 출력됩니다.
