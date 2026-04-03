@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ year }}년 {{ month }}월 달력</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Arial문자 사용, 없으면 sans-serif */
+            text-align: center; /* 가운데 정렬 */
+        }
+
+        /* 이동버튼 생성 */
+        .move-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            padding: 10px 15px;
+            border: 1px solid #999;
+            border-radius: 8px;
+            background-color: white;
+        }
+
+        /* 마우스를 올렸을 때 회색으로 바뀜*/
+        .move-btn:hover {
+            background-color: #f2f2f2;
+        }
+        
+        /* 화면 왼쪽에서 30픽셀 떨어진곳에 왼쪽 버튼 위치 지정*/
+        .left-btn {
+            left: 30px;
+        }
+
+        /* 화면 오른쪽에서 30픽셀 떨어진곳에 오른쪽 버튼 위치 지정*/
+        .right-btn {
+            right: 30px;
+        }
+
+        /* 달력 전체 틀*/
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            width: 14%;
+            height: 100px;
+            vertical-align: top;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .sun {
+            color: red;
+        }
+
+        .sat {
+            color: blue;
+        }
+
+        .holiday {
+            color: red;
+            font-weight: bold;
+        }
+
+        .holiday-name {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .day-number {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ year }}년 {{ month }}월</h1>
+    
+    <!-- 버튼-->
+    <a class="move-btn left-btn" href="/?year={{ year }}&month={{ month - 1 }}">◀</a>
+    <a class="move-btn right-btn" href="/?year={{ year }}&month={{ month + 1 }}">▶</a>
+
+    <table>
+        <tr>
+            <th class="sun">일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th class="sat">토</th>
+        </tr>
+
+        {% for week in weeks %}
+        <tr>
+            {% for day in week %}
+                {% if day == None %}
+                    <td></td>
+                {% else %}
+                    <td>
+                        {% if day.holiday %}
+                            <div class="day-number holiday">{{ day.day }}</div>
+                            <div class="holiday-name">{{ day.holiday }}</div>
+                        {% else %}
+                            <div class="day-number">{{ day.day }}</div>
+                        {% endif %}
+                    </td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
