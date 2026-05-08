@@ -1,15 +1,29 @@
 import streamlit as st
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt
-from pathlib import Path
 import matplotlib
+import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
+from pathlib import Path
+import platform
 
-font_path = "/usr/share/fonts/truetype/nanum/NanumBarunGothic.ttf"
+# =========================
+# 한글 폰트 설정
+# =========================
+if platform.system() == "Windows":
+    plt.rc("font", family="Malgun Gothic")
 
-fm.fontManager.addfont(font_path)
-plt.rc("font", family="NanumBarunGothic")
+else:
+    font_dir = Path("/usr/share/fonts/truetype/nanum")
+    font_files = list(font_dir.glob("*.ttf"))
+
+    if len(font_files) > 0:
+        for font_file in font_files:
+            fm.fontManager.addfont(str(font_file))
+
+        font_name = fm.FontProperties(fname=str(font_files[0])).get_name()
+        plt.rc("font", family=font_name)
+
 matplotlib.rcParams["axes.unicode_minus"] = False
 
 st.title("Heart Failure 시각화 과제")
