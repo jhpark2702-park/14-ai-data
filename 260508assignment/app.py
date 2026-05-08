@@ -2,14 +2,17 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 st.title("Heart Failure 시각화 과제")
 
 # =========================
 # 1. 데이터 불러오기 + merge
 # =========================
-df_a = pd.read_json("heart_failure_a.json")
-df_b = pd.read_json("heart_failure_b.json")
+BASE_DIR = Path(__file__).parent
+
+df_a = pd.read_json(BASE_DIR / "heart_failure_a.json")
+df_b = pd.read_json(BASE_DIR / "heart_failure_b.json")
 
 df = pd.merge(df_a, df_b, on="person_id", how="inner")
 
