@@ -3,6 +3,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from pathlib import Path
+import koreanize_matplotlib
 
 st.title("Heart Failure 시각화 과제")
 
