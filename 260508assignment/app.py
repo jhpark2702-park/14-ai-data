@@ -3,7 +3,14 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from pathlib import Path
-import koreanize_matplotlib
+import matplotlib
+import matplotlib.font_manager as fm
+
+font_path = "/usr/share/fonts/truetype/nanum/NanumBarunGothic.ttf"
+
+fm.fontManager.addfont(font_path)
+plt.rc("font", family="NanumBarunGothic")
+matplotlib.rcParams["axes.unicode_minus"] = False
 
 st.title("Heart Failure 시각화 과제")
 
