@@ -2,4 +2,3 @@ streamlit
 pandas
 seaborn
 matplotlib
-koreanize_matplotlib
