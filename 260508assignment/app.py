@@ -7,9 +7,7 @@ import matplotlib.font_manager as fm
 from pathlib import Path
 import platform
 
-# =========================
-# 한글 폰트 설정
-# =========================
+###### 한글 폰트 설정 ######
 if platform.system() == "Windows":
     plt.rc("font", family="Malgun Gothic")
 
@@ -27,11 +25,9 @@ else:
 
 matplotlib.rcParams["axes.unicode_minus"] = False
 
-st.title("Heart Failure 시각화 과제")
+st.title("과제 0508")
 
-# =========================
-# 1. 데이터 불러오기 + merge
-# =========================
+# 데이터 불러오기
 BASE_DIR = Path(__file__).parent
 
 df_a = pd.read_json(BASE_DIR / "heart_failure_a.json")
@@ -41,16 +37,13 @@ df = pd.merge(df_a, df_b, on="person_id", how="inner")
 
 dropped_num = (len(df_a) - len(df)) + (len(df_b) - len(df))
 
-st.write("합쳐진 데이터 개수:", len(df))
-st.write("merge 과정에서 사라진 데이터 개수:", dropped_num)
-
 st.divider()
 
 
-# =========================
+
 # 그래프 1. jointplot
-# =========================
-st.subheader("1. 박출계수와 나이의 관계")
+
+st.subheader("1. 박출계수와 나이의 상관관계")
 
 g = sns.jointplot(
     data=df,
@@ -68,7 +61,7 @@ st.divider()
 # =========================
 # 그래프 2. violinplot
 # =========================
-st.subheader("2. 사망 여부와 혈소판 수치 관계")
+st.subheader("2.죽음과 당뇨, 흡연의 상관관계")
 
 smoking_select = st.radio(
     "흡연 여부 선택",
@@ -100,10 +93,10 @@ plt.close(fig)
 st.divider()
 
 
-# =========================
+
 # 그래프 3. histplot
-# =========================
-st.subheader("3. time 컬럼 히스토그램")
+
+st.subheader("3.심박출 범위에 따른 사망")
 
 min_ef = int(df["ejection_fraction"].min())
 max_ef = int(df["ejection_fraction"].max())
