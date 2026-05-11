@@ -21,7 +21,6 @@ else:
 
         font_name = fm.FontProperties(fname=str(font_files[0])).get_name()
         plt.rc("font", family=font_name)
-        sns.set_theme(font=font_name)
 
 matplotlib.rcParams["axes.unicode_minus"] = False
 
